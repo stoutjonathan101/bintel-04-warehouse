@@ -176,38 +176,6 @@ If you try to run Python that interacts with the DuckDB file and get an error th
 file is being used by another process, just
 click the **DuckDB left-side tab**, right-click your database and select **Detach Database**.
 
-## Workflow 1. Example Output (Remove or Replace this Section after You Verify)
-
-```shell
-| INFO | BI | START verify warehouse schema....
-| INFO | BI | SHOW TABLES returns a list of all tables in the database
-| INFO | BI | - Calling .fetchall() on the result of SHOW TABLES
-| INFO | BI | - Gets the result - we can store it in a variable named 'tables'
-| INFO | BI |   - Retrieved tables from the warehouse.
-| INFO | BI |  - tables has a tuple for each table in the warehouse
-| INFO | BI |  - the first tuple element (at the 0 index) is the table name
-| INFO | BI |   Tables in warehouse: ['dim_customers', 'dim_products', 'fact_sales']
-| INFO | BI | Workflow 1-CREATE DW complete
-| INFO | BI | ========================
-| INFO | BI | Executed successfully!
-| INFO | BI | ========================
-```
-
-## Workflow 2. Example Output (Remove or Replace this Section after You Verify)
-
-```shell
-| INFO | BI | ========================
-| INFO | BI | ROW COUNTS AFTER LOAD
-| INFO | BI | ========================
-| INFO | BI | CALL a function to verify row counts........
-| INFO | BI |   PASS: dim_customers has 200 rows
-| INFO | BI |   PASS: dim_products has 100 rows
-| INFO | BI |   PASS: fact_sales has 2392 rows
-| INFO | BI | Workflow 2-ETL complete
-| INFO | BI | ========================
-| INFO | BI | Executed successfully!
-```
-
 ## Findings and Visuals
 
 Take screenshots of your charts and provide them here with a discussion.
@@ -223,13 +191,14 @@ In your custom project:
 
 Replace these placeholders with screenshots from your own project run:
 
-![Total Sales by Region](./docs/images/Figure_1.png)
-
-![Total Sales by Product Category](./docs/images/Figure_2.png)
+![Total Sales by Product Category/by Region](./docs/images/Figure_4.png)
 
 ## Project Documentation
 
 Additional project instructions, terms, and notes:
+
+07/21/2026 09:33PM
+Initial commit achieved; authorship changed due to repo copy.
 
 [docs/index.md](docs/index.md)
 
