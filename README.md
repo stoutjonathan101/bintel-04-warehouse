@@ -191,7 +191,7 @@ In your custom project:
 
 Replace these placeholders with screenshots from your own project run:
 
-![Total Sales by Product Category/by Region](./docs/images/Figure_4.png)
+![Total Sales by Product Category/by Region](./docs/images/Figure_3.png)
 
 ## Project Documentation
 
@@ -199,6 +199,9 @@ Additional project instructions, terms, and notes:
 
 07/21/2026 09:33PM
 Initial commit achieved; authorship changed due to repo copy.
+
+07/21/2027 9:35PM
+Edited Read me to nullify figure 4 real document saved as figure 3.
 
 [docs/index.md](docs/index.md)
 
