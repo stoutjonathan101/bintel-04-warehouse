@@ -23,63 +23,131 @@ to get the example projects running on your machine.
 
 Describe your small technical modification to the example project.
 
-Include:
+Phase 4. Technical Modification
+I added a Daily Sales Trend feature to my custom BI application (jonathans_app_case.py). This modification introduced a new time‑series visualization that aggregates sales by date and plots them using the project’s plot_line() function.
 
-- What you changed
-- Why you chose that change
-- How you verified that it worked
-- What result, output, chart, metric, or behavior confirmed the change
+Specifically I added; A conversion of the SaleDate column to a proper datetime by formating daily aggregation step using groupby("SaleDate") and a new line chart showing how total sales change over time
 
-Compared with the example project,
-explain what is different and why the change matters.
+This enhancement uses the prepared file sales_data_prepared.csv, which contains the SaleDate column.
 
-Was it easy, or surprisingly challenging and why do you think so?
+Why I chose this change
+I chose this modification because time‑series analysis is one of the most valuable tools in business intelligence. The example project already analyzes sales by region and category, but it does not show how sales change over time. Adding a daily trend chart provides:
+
+I verified the change by running the script using
+
+uv run python -m bizintel.jonathans_app_case
+Watching the logs to confirm the new step executed using the logger of CALL a function to plot daily sales trend........ and I was able to confirm that a new line chart window appeared showing the daily sales trend
+
+It was surprisingly challenging because the plot_line() function required additional parameters (xlabel, ylabel) and the prepared sales file had to be used instead of the raw file.
 
 ## Phase 5. Custom Project
 
-Describe your custom data warehouse design and ETVL work.
+  I loaded three prepared CSV files into my warehouse.
+
+  # Assumptions and Decisions
+  All foreign keys (CustomerID, ProductID) are valid and present
+  SaleDate is trustworthy and formatted correctly
+  Prepared files replace raw files for warehouse loading
+  No duplicate rows remain after preparation
 
 ### Basis and Data
 
-Describe the prepared data you loaded into the warehouse.
-
-Include:
-
-- The three prepared data files and what each contains
-- Any assumptions or decisions made during preparation
-- The warehouse file location and format
+  # Warehouse stored in
+  Code
+  data/warehouse/smart_sales.duckdb
+  Format: DuckDB, a columnar analytical database ideal for BI workloads
 
 ### Warehouse Design
 
-Describe your star schema design.
+  Fact Table: fact_sales
+  Columns:
+  SaleID (surrogate key)
+  CustomerID (FK)
+  ProductID (FK)
+  SaleDate
+  SaleAmount
+  Quantity (if available)
+  Dimension Tables
+  dim_customers
+  CustomerID (PK)
+  Region
+  CustomerName (if available)
 
-Include:
+  dim_products
+  ProductID (PK)
+  Category
+  ProductName (if available)
+  dim_dates
+  Date (PK)
+  Year
+  Month
+  Day
+  Week
+  Quarter
 
-- Your fact table and its columns
-- Your dimension tables and their columns
-- Your primary and foreign key relationships
-- Why a star schema fits this data
+  Relationships
+  fact_sales.CustomerID → dim_customers.CustomerID
+  fact_sales.ProductID → dim_products.ProductID
+  fact_sales.SaleDate → dim_dates.Date
+
+  Why a Star Schema Fits
+  Sales data is transactional and fits naturally into a fact table
+  Customers, products, and dates are stable dimension
+  Queries become fast and intuitive (e.g., sales by region, category, or date)
+  DuckDB is optimized for columnar star‑schema analytics
 
 ### ETVL Process
 
-Describe your extract, transform, verify, and load steps.
+  # Extract
+  I extracted data from the prepared CSV files using:
+  python
+  load_data(PREPARED_FILE, "label")
 
-Include:
+  # Transform
+  Transformations included:
+  Converting SaleDate to datetime
+  Converting SaleAmount to numeric
+  Normalizing Region and Category text
+  Ensuring foreign key consistency
 
-- How you extracted data from the prepared CSV files
-- Any transformations applied before loading
-- How you verified the data loaded correctly
-- What the row counts confirmed
+  # Verify
+  I verified correctness by:
+  Checking row counts in logs
+  Confirming column counts matched expectations
+  Running simple DuckDB queries to ensure tables populated correctly
+
+  # Load
+  I loaded the cleaned data into DuckDB
 
 ### Summary
 
-Summarize your custom warehouse work.
+  # What I implemented beyond the example
+  A full star‑schema warehouse
+  A daily sales trend visualization
+  Use of prepared data instead of raw data
+  A custom BI application (jonathans_app_case.py)
 
-Include:
+  # What the warehouse contains
+  Cleaned customer, product, and date dimensions
+  A fact table with all sales transactions
+  Verified relationships and consistent keys
 
-- What you implemented beyond the example
-- What the warehouse contains
-- What you learned about data warehouse design
-- What kinds of real business problems a data warehouse enables
+  # What I learned
+  How to design a star schema
+  How to prepare data for analytical workloads
+  How to verify and load data into DuckDB
 
-Display at least one screenshot of your populated warehouse tables.
+  # How BI systems depend on clean, well‑structured data
+  Real business problems this warehouse enables
+  Regional sales performance
+  Category profitability
+  Daily/weekly/monthly sales trends
+  Forecasting and anomaly detection
+  Customer segmentation
+  Inventory planning
+
+  Display at least one screenshot of your populated warehouse tables.
+
+![Total Sales by Product Category/by Region](./docs/images/Figure_4.png)
+
+![Total Sales by Product Category/by Region](./docs/images/Figure_4.png)

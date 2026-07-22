@@ -193,6 +193,8 @@ Replace these placeholders with screenshots from your own project run:
 
 ![Total Sales by Product Category/by Region](./docs/images/Figure_3.png)
 
+![Total Sales by Product Category/by Region](./docs/images/Figure_4.png)
+
 ## Project Documentation
 
 Additional project instructions, terms, and notes:
@@ -202,6 +204,9 @@ Initial commit achieved; authorship changed due to repo copy.
 
 07/21/2027 9:35PM
 Edited Read me to nullify figure 4 real document saved as figure 3.
+
+07/21/2026 10:44PM
+I updated my BI application by adding a Daily Sales Trend feature that uses the prepared sales dataset’s SaleDate column to generate a time‑series line chart showing how total sales change over time. This enhancement expands the original example, which only analyzed sales by region and category, by introducing a new analytical dimension that reveals patterns, spikes, and seasonal behavior in the data. I verified the change by running my custom script, confirming the new log messages, fixing missing parameters required by plot_line(), and seeing the daily trend chart appear successfully. This modification matters because time‑series analysis is essential in real BI work, and adding it required understanding the prepared data, adjusting file paths, and integrating a new visualization into the workflow—challenging at first, but ultimately a valuable and meaningful improvement.
 
 [docs/index.md](docs/index.md)
 
